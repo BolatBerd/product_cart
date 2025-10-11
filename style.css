@@ -9,24 +9,20 @@
   font-weight: 400;
 }
 
-.background-img{
-  background-image: url("..\img\photo-card_1.jpg");
-  position: absolute;
-  background-clip:border-box;
-  background-origin:content-box;
-  width: 790px;
-  height: 697px;
-  z-index: 1;
-  left: 85px;
-  top: -50px;
+.list {
+  height: 1715px;
+  width: 1280px;
+  display: inline-block;
+  background-image: url("/img/background-img.png");
+  background-size: 790px 697px;
+  background-repeat: no-repeat;
+  background-position: 85px 0px;
 }
 
-.heading{
+.heading {
   z-index: 11;
-  position:relative;
   width: 846;
   height: 78;
-  font-style: Regular;
   font-size: 70px;
   line-height: 78px;
   text-align: center;
@@ -35,10 +31,10 @@
   margin-bottom: 110px;
 }
 
-.contener{
+.container {
   display: flex;
   flex-wrap: wrap;
-  justify-content:center;
+  justify-content: center;
   gap: 45px;
   row-gap: 0px;
   width: 1110px;
@@ -46,7 +42,7 @@
   margin-left: 85px;
 }
 
-.product_contener {
+.product_container {
   z-index: 10;
   width: 340px;
   height: 523px;
@@ -62,7 +58,7 @@
   padding-bottom: 30px;
 }
 
-.card_type {
+.product-category {
   font-size: 12px;
   text-transform: uppercase;
   display: block;
@@ -79,7 +75,6 @@
 }
 
 .card_description {
-  font-style: Regular;
   width: 287;
   padding-bottom: 15px;
 }
@@ -89,14 +84,14 @@
 }
 
 .card_list {
-  padding-bottom:25px;
+  padding-bottom: 25px;
   list-style: circle;
   margin-left: 15px;
 }
 
-.card_price-contener {
+.card_price-container {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   font-weight: 700;
 }
 
@@ -109,7 +104,6 @@
 }
 
 .card_price {
-  font-style: Regular;
   font-size: 20px;
   line-height: 24px;
 }

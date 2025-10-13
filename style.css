@@ -9,7 +9,7 @@
   font-weight: 400;
 }
 
-.list {
+.main-container {
   height: 1715px;
   width: 1280px;
   display: inline-block;
@@ -21,17 +21,17 @@
 
 .heading {
   z-index: 11;
-  width: 846;
-  height: 78;
+  width: 846px;
+  display: flex;
+  justify-content: center;
+  height: 78px;
   font-size: 70px;
   line-height: 78px;
-  text-align: center;
-  vertical-align: middle;
-  margin-top: 220px;
-  margin-bottom: 110px;
+  margin: 220px auto 110px;
+  left: auto;
 }
 
-.container {
+.product-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -79,11 +79,11 @@
   padding-bottom: 15px;
 }
 
-.card_structure{
+.card_structure-text {
   padding-bottom: 5px;
 }
 
-.card_list {
+.card_structure {
   padding-bottom: 25px;
   list-style: circle;
   margin-left: 15px;
@@ -95,7 +95,7 @@
   font-weight: 700;
 }
 
-.card_price-name {
+.card_price-text {
   font-weight: 700;
   font-style: Bold;
   font-size: 20px;

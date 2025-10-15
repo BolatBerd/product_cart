@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Montserrat', Courier, monospace;
+  font-size: 13px;
+  line-height: 18px;
+  color: #515076;
+  font-weight: 400;
+}
+
+.main-container {
+  height: 1715px;
+  width: 1280px;
+  display: inline-block;
+  background-image: url("/img/background-img.png");
+  background-size: 790px 697px;
+  background-repeat: no-repeat;
+  background-position: 85px 0px;
+}
+
+.heading {
+  z-index: 11;
+  width: 846px;
+  display: flex;
+  justify-content: center;
+  height: 78px;
+  font-size: 70px;
+  line-height: 78px;
+  margin: 220px auto 110px;
+  left: auto;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 45px;
+  row-gap: 0px;
+  width: 1110px;
+  height: 1120px;
+  margin-left: 85px;
+}
+
+.product_container {
+  z-index: 10;
+  width: 340px;
+  height: 523px;
+  padding: 25px;
+  background-color: #F7F7FA;
+  box-shadow: 2px 2px 10px 0px #5150761A;
+  list-style: none;
+}
+
+.card_img {
+  width: 290px;
+  height: 245px;
+  padding-bottom: 30px;
+}
+
+.product-category {
+  font-size: 12px;
+  text-transform: uppercase;
+  display: block;
+  padding-bottom: 5px;
+}
+
+.card_name {
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  line-height: 27px;
+  display: block;
+  padding-bottom: 5px;
+}
+
+.card_description {
+  width: 287;
+  padding-bottom: 15px;
+}
+
+.product_composition-text {
+  padding-bottom: 5px;
+}
+
+.product_composition {
+  padding-bottom: 25px;
+  list-style: circle;
+  margin-left: 15px;
+}
+
+.card_price-container {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+}
+
+.card_price-text {
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+}
+
+.card_price {
+  font-size: 20px;
+  line-height: 24px;
+}

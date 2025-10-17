@@ -9,6 +9,14 @@
   font-weight: 400;
 }
 
+.change-color-btn {
+  background-color: aquamarine;
+}
+
+.change-color-btn-red {
+  background-color: red;
+}
+
 .main-container {
   height: 1715px;
   width: 1280px;

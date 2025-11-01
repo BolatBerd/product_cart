@@ -15,7 +15,7 @@ measureTemperature("Тюмень", 10);
 
 const SPEED_OF_SOUND = 1193.26;
 
-const measureSpeed = (speed) =>  speed > SPEED_OF_SOUND ? console.log("Сверхзвуковая скорость"):console.log("Дозвуковая скорость");
+const measureSpeed = (speed) => speed > SPEED_OF_SOUND ? console.log("Сверхзвуковая скорость") : console.log("Дозвуковая скорость");
 
 measureSpeed(1500);
 
@@ -45,8 +45,8 @@ buyProduct(45);
 // 7. Создать 3 переменных (без разницы каких) и именовать их по своему усмотрению
 
   const calculateMultiplication = (priceProduct, quantity) => {
-  const amount = priceProduct * quantity;
-  console.log(`Сумма = ${amount} руб.`);
+  const multiplication = priceProduct * quantity;
+  console.log(`Сумма = ${multiplication} руб.`);
 }
 
 calculateMultiplication(20, 15);

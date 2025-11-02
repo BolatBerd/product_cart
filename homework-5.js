@@ -46,7 +46,7 @@ buyProduct(45);
 
   const calculateMultiplication = (priceProduct, quantity) => {
   const multiplication = priceProduct * quantity;
-  console.log(`Сумма = ${multiplication} руб.`);
+  console.log(`Умножение  = ${multiplication} руб.`);
 }
 
 calculateMultiplication(20, 15);

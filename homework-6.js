@@ -4,7 +4,7 @@
 //   Чем больше - тем лучше (но не увлекайтесь, до 10 максимум)
 //   . Подберите правильное название для переменной.
 
-const humanData = {
+const userInformation= {
   name: 'Иван',
   surname: 'Иванов',
   email: 'Ivan@gmail.com',
@@ -22,47 +22,45 @@ const humanData = {
 //  значением которого будет объект, описанный в пункте №3.
 //   Желательно добавлять отдельной строкой (имеется ввиду не при создании объекта)
 
-const carData = {
+const car = {
   carBrand: 'Toyota',
-  model: 'Camry',
-  yearRelease: 2018,
-  color: 'Белый',
-  gearbox: 'Автомат'
+  carModel: 'Camry',
+  carYearRelease: 2018,
+  carColor: 'Белый',
+  carGearbox: 'Автомат'
 };
 
-carData.carOwner = humanData;
+car.carOwner = userInformation;
 
 // 5. Написать функцию которая аргументом будет принимать объект, описанный в пункте №4.
 //  Она проверяет, есть ли в объекте свойство "максимальная скорость" MaxSpeed
 //  , если нет - добавляет его и задает значение,
 //   если есть - прекращает выполнение (ничего не делает)
 
-const addMaxSpeed = carData => {
-  const arrayCarData = Object.keys(carData);
-    for (let i = 0; i <= arrayCarData.length - 1; i++) {
-      if (arrayCarData[i] !== 'maxSpeed') {
-      carData.maxSpeed = 250;
-      }
+  const hasMaxSpeed = car => {
+  if (!('maxSpeed' in car)) {
+    car.maxSpeed = 250; 
   }
-  // console.log(carData);
+  // console.log(car);
 };
 
-addMaxSpeed(carData);
+hasMaxSpeed(car);
 
 // 6. Написать функцию, которая получает первым аргументом  — объект,
 //  а вторым аргументом — свойство объекта, которое нужно вывести и выводит его значение.
 
-const showCarData = carData => {
-  const arrayCarDataEntries = Object.entries(carData);
-  //  console.log(arrayCarDataEntries);
+const showCar = (obj, property) => {
+  console.log(`Объект:`, obj);
+  console.log(`Свойство: ${property}`);
+  console.log(`Значение: ${obj[property]}`);
 };
 
-showCarData(carData);
+showCar(car, 'carModel'); 
 
 // 7. Создать массив, который содержит названия продуктовых 
 // карточек ваших товаров (просто строки)
 
-const arrayProductCard = [
+const arrayProducts = [
   'Свежие яблоки красные',
   'Натуральный мед с цветочной пасеки',
   'Органический греческий йогурт',
@@ -73,7 +71,7 @@ const arrayProductCard = [
   'Творог домашний 5%',
   'Зеленый чай в листах',
   'Шоколад горький 70% какао'
-  ];
+];
   
   //8. Создать массив, состоящий из объектов,
   //где объект представляет собой книгу 
@@ -81,77 +79,75 @@ const arrayProductCard = [
   //После, используя известный нам метод массив, 
   //добавить еще одну книгу в конец списка.
   //Можете заменить книги на фильмы, или другую сущность, идею вы поняли.
-  
-const bookWarAndPeace = { 
-  NameBook: 'Война и мир',
-  Author: 'Лев Толстой',
-  YearRelease: 1869,
-  CoverColor: 'Красный',
-  Genre: 'Роман-эпопея',
-  };
-const bookCrimeAndPunishment = { 
-  NameBook: 'Преступление и наказание',
-  Author: 'Фёдор Достоевский',
-  YearRelease: 1866,
-  CoverColor: 'Синий',
-  Genre: 'Психологический роман',
-  };
-const bookMasterAndMargarita = { 
-  NameBook: 'Мастер и Маргарита',
-  Author: 'Михаил Булгаков',
-  YearRelease: 1967,
-  CoverColor: 'Черный',
-  Genre: 'Фантастический роман',
-  };
-const bookHarryPotter = { 
-  NameBook: 'Гарри Поттер и философский камень',
-  Author: 'Джоан Роулинг',
-  YearRelease: 1997,
-  CoverColor: 'Зеленый',
-  Genre: 'Фэнтези',
-  };
-
+const arrayBooks = [  
+  { 
+    NameBook: 'Война и мир',
+    Author: 'Лев Толстой',
+    YearRelease: 1869,
+    CoverColor: 'Красный',
+    Genre: 'Роман-эпопея',
+  },
+  { 
+    NameBook: 'Преступление и наказание',
+    Author: 'Фёдор Достоевский',
+    YearRelease: 1866,
+    CoverColor: 'Синий',
+    Genre: 'Психологический роман',
+  },
+  { 
+    NameBook: 'Мастер и Маргарита',
+    Author: 'Михаил Булгаков',
+    YearRelease: 1967,
+    CoverColor: 'Черный',
+    Genre: 'Фантастический роман',
+  },
+  { 
+    NameBook: 'Гарри Поттер и философский камень',
+    Author: 'Джоан Роулинг',
+    YearRelease: 1997,
+    CoverColor: 'Зеленый',
+    Genre: 'Фэнтези',
+  }
+];
 const book1984 = { 
   NameBook: '1984',
   Author: 'Джордж Оруэлл',
   YearRelease: 1949,
   CoverColor: 'Серый',
   Genre: 'Антиутопия',
-  };
-
-const arrayBooks = [bookWarAndPeace, bookCrimeAndPunishment, bookMasterAndMargarita, bookHarryPotter];
+};
 
 arrayBooks.push(book1984);
+// console.log(arrayBooks);
 
 // 9. Создать еще один массив, состоящих из тех же книг,
 // но относящийся к определенной вселенной (Гарри Поттер, Марвел и так далее).
 // (Если используете другую, свою сущность - импровизируйте).
 // С помощью известного нам метода массива или оператора 
 // (рекомендую использовать оператор), объединить эти два массива в один
-
-const bookHarryPotterAndRoom = { 
-  NameBook: 'Гарри Поттер и тайная комната',
-  Author: 'Джоан Роулинг',
-  YearRelease: 1998,
-  CoverColor: 'Зеленый',
-  Genre: 'Фэнтези',
-  };
-const bookSpiderMan = { 
-  NameBook: 'Человек-Паук: Возвращение домой',
-  Author: 'Грег Пак',
-  YearRelease: 2017,
-  CoverColor: 'Красный/Чёрный',
-  Genre: 'Супергеройский роман',
-  };
-const bookFamousWars = { 
-  NameBook: 'Знвёздые войны: Зло возрождается',
-  Author: 'Эйса Уильямс',
-  YearRelease: 2022,
-  CoverColor: 'Черный с синим',
-  Genre: 'Научная фантастика',
-  };
-
-const arrayBooksFantastic = [bookHarryPotterAndRoom, bookSpiderMan, bookFamousWars];
+const arrayBooksFantastic = [
+  { 
+    NameBook: 'Гарри Поттер и тайная комната',
+    Author: 'Джоан Роулинг',
+    YearRelease: 1998,
+    CoverColor: 'Зеленый',
+    Genre: 'Фэнтези',
+  },
+  { 
+    NameBook: 'Человек-Паук: Возвращение домой',
+    Author: 'Грег Пак',
+    YearRelease: 2017,
+    CoverColor: 'Красный/Чёрный',
+    Genre: 'Супергеройский роман',
+  },
+  { 
+    NameBook: 'Знвёздые войны: Зло возрождается',
+    Author: 'Эйса Уильямс',
+    YearRelease: 2022,
+    CoverColor: 'Черный с синим',
+    Genre: 'Научная фантастика',
+  }
+];
 
 const books = [...arrayBooks, ...arrayBooksFantastic];
   
@@ -163,16 +159,7 @@ const books = [...arrayBooks, ...arrayBooksFantastic];
 // Что я хочу этим сказать: если книга выпущена позже 2000 года,
 // устанавливаем true (да, это редкий), нет - false (значит это не редкий).
 
-const addRare = arrayBooks => {
-    for (let i = 0; i <= arrayBooks.length - 1; i++) {
-      if (arrayBooks[i].YearRelease <= 2000) {
-        arrayBooks[i].isRare = true;
-      } else {
-        arrayBooks[i].isRare = false;
-      }
-  }
-};
+const isRare = arrayBooks => arrayBooks.forEach(book => book.isRare = book.YearRelease <= 2000);
 
-addRare(arrayBooks);
-
-// console.log(arrayBooks);
+isRare(arrayBooks);
+console.log(arrayBooks);

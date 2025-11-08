@@ -4,7 +4,7 @@
 //   Чем больше - тем лучше (но не увлекайтесь, до 10 максимум)
 //   . Подберите правильное название для переменной.
 
-const userInformation= {
+const userInformation = {
   name: 'Иван',
   surname: 'Иванов',
   email: 'Ivan@gmail.com',
@@ -41,7 +41,6 @@ car.carOwner = userInformation;
   if (!('maxSpeed' in car)) {
     car.maxSpeed = 250; 
   }
-  // console.log(car);
 };
 
 hasMaxSpeed(car);
@@ -60,7 +59,7 @@ showCar(car, 'carModel');
 // 7. Создать массив, который содержит названия продуктовых 
 // карточек ваших товаров (просто строки)
 
-const arrayProducts = [
+const products = [
   'Свежие яблоки красные',
   'Натуральный мед с цветочной пасеки',
   'Органический греческий йогурт',
@@ -79,7 +78,7 @@ const arrayProducts = [
   //После, используя известный нам метод массив, 
   //добавить еще одну книгу в конец списка.
   //Можете заменить книги на фильмы, или другую сущность, идею вы поняли.
-const arrayBooks = [  
+const books = [  
   { 
     NameBook: 'Война и мир',
     Author: 'Лев Толстой',
@@ -117,15 +116,15 @@ const book1984 = {
   Genre: 'Антиутопия',
 };
 
-arrayBooks.push(book1984);
-// console.log(arrayBooks);
+books.push(book1984);
+
 
 // 9. Создать еще один массив, состоящих из тех же книг,
 // но относящийся к определенной вселенной (Гарри Поттер, Марвел и так далее).
 // (Если используете другую, свою сущность - импровизируйте).
 // С помощью известного нам метода массива или оператора 
 // (рекомендую использовать оператор), объединить эти два массива в один
-const arrayBooksFantastic = [
+const booksFantastic = [
   { 
     NameBook: 'Гарри Поттер и тайная комната',
     Author: 'Джоан Роулинг',
@@ -149,7 +148,7 @@ const arrayBooksFantastic = [
   }
 ];
 
-const books = [...arrayBooks, ...arrayBooksFantastic];
+const allBooks = [...books, ...booksFantastic];
   
 // 10. Почитать про метод массива — forEach. Написать функцию,
 //  которая принимает массив сущностей с задания №8. 
@@ -159,7 +158,7 @@ const books = [...arrayBooks, ...arrayBooksFantastic];
 // Что я хочу этим сказать: если книга выпущена позже 2000 года,
 // устанавливаем true (да, это редкий), нет - false (значит это не редкий).
 
-const isRare = arrayBooks => arrayBooks.forEach(book => book.isRare = book.YearRelease <= 2000);
+const isRare = books => books.forEach(books => books.isRare = books.yearRelease <= 2000);
 
-isRare(arrayBooks);
-console.log(arrayBooks);
+isRare(books);
+console.log(books);

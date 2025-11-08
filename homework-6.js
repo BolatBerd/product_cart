@@ -80,40 +80,40 @@ const products = [
   //Можете заменить книги на фильмы, или другую сущность, идею вы поняли.
 const books = [  
   { 
-    NameBook: 'Война и мир',
-    Author: 'Лев Толстой',
-    YearRelease: 1869,
-    CoverColor: 'Красный',
-    Genre: 'Роман-эпопея',
+    nameBook: 'Война и мир',
+    author: 'Лев Толстой',
+    yearRelease: 1869,
+    coverColor: 'Красный',
+    genre: 'Роман-эпопея',
   },
   { 
-    NameBook: 'Преступление и наказание',
-    Author: 'Фёдор Достоевский',
-    YearRelease: 1866,
-    CoverColor: 'Синий',
-    Genre: 'Психологический роман',
+    nameBook: 'Преступление и наказание',
+    author: 'Фёдор Достоевский',
+    yearRelease: 1866,
+    coverColor: 'Синий',
+    genre: 'Психологический роман',
   },
   { 
-    NameBook: 'Мастер и Маргарита',
-    Author: 'Михаил Булгаков',
-    YearRelease: 1967,
-    CoverColor: 'Черный',
-    Genre: 'Фантастический роман',
+    nameBook: 'Мастер и Маргарита',
+    author: 'Михаил Булгаков',
+    yearRelease: 1967,
+    coverColor: 'Черный',
+    genre: 'Фантастический роман',
   },
   { 
-    NameBook: 'Гарри Поттер и философский камень',
-    Author: 'Джоан Роулинг',
-    YearRelease: 1997,
-    CoverColor: 'Зеленый',
-    Genre: 'Фэнтези',
+    nameBook: 'Гарри Поттер и философский камень',
+    author: 'Джоан Роулинг',
+    yearRelease: 1997,
+    coverColor: 'Зеленый',
+    genre: 'Фэнтези',
   }
 ];
 const book1984 = { 
-  NameBook: '1984',
-  Author: 'Джордж Оруэлл',
-  YearRelease: 1949,
-  CoverColor: 'Серый',
-  Genre: 'Антиутопия',
+  nameBook: '1984',
+  author: 'Джордж Оруэлл',
+  yearRelease: 1949,
+  coverColor: 'Серый',
+  genre: 'Антиутопия',
 };
 
 books.push(book1984);
@@ -126,25 +126,25 @@ books.push(book1984);
 // (рекомендую использовать оператор), объединить эти два массива в один
 const booksFantastic = [
   { 
-    NameBook: 'Гарри Поттер и тайная комната',
-    Author: 'Джоан Роулинг',
-    YearRelease: 1998,
-    CoverColor: 'Зеленый',
-    Genre: 'Фэнтези',
+    nameBook: 'Гарри Поттер и тайная комната',
+    author: 'Джоан Роулинг',
+    yearRelease: 1998,
+    coverColor: 'Зеленый',
+    genre: 'Фэнтези',
   },
   { 
-    NameBook: 'Человек-Паук: Возвращение домой',
-    Author: 'Грег Пак',
-    YearRelease: 2017,
-    CoverColor: 'Красный/Чёрный',
-    Genre: 'Супергеройский роман',
+    nameBook: 'Человек-Паук: Возвращение домой',
+    author: 'Грег Пак',
+    yearRelease: 2017,
+    coverColor: 'Красный/Чёрный',
+    genre: 'Супергеройский роман',
   },
   { 
-    NameBook: 'Знвёздые войны: Зло возрождается',
-    Author: 'Эйса Уильямс',
-    YearRelease: 2022,
-    CoverColor: 'Черный с синим',
-    Genre: 'Научная фантастика',
+    nameBook: 'Знвёздые войны: Зло возрождается',
+    author: 'Эйса Уильямс',
+    yearRelease: 2022,
+    coverColor: 'Черный с синим',
+    genre: 'Научная фантастика',
   }
 ];
 

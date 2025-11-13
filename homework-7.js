@@ -11,28 +11,28 @@ const numbersFiltr = numbers.filter(number => number >= 5);
 
 const books = [  
   { 
-    nameBook: 'Война и мир',
+    name: 'Война и мир',
     author: 'Лев Толстой',
     yearRelease: 1869,
     coverColor: 'Красный',
     genre: 'Роман-эпопея',
   },
   { 
-    nameBook: 'Преступление и наказание',
+    name: 'Преступление и наказание',
     author: 'Фёдор Достоевский',
     yearRelease: 1866,
     coverColor: 'Синий',
     genre: 'Психологический роман',
   },
   { 
-    nameBook: 'Мастер и Маргарита',
+    name: 'Мастер и Маргарита',
     author: 'Михаил Булгаков',
     yearRelease: 1967,
     coverColor: 'Черный',
     genre: 'Фантастический роман',
   },
   { 
-    nameBook: 'Гарри Поттер и философский камень',
+    name: 'Гарри Поттер и философский камень',
     author: 'Джоан Роулинг',
     yearRelease: 1997,
     coverColor: 'Зеленый',
@@ -40,35 +40,39 @@ const books = [
   }
 ];
 
-const booksFind = books.find(book => book.nameBook === 'Мастер и Маргарита'); 
+const booksFind = books.find(book => book.name === 'Мастер и Маргарита'); 
 
 // 4. Написать функцию, которая аргументом будет принимать массив и изменять его
 //  порядок на противоположный ("переворачивать") .
 //  Два вышеуказанных массива с помощью этой функции перевернуть.
 
-const booksReverse = books.reverse();
+const booksReverse = books => books.reverse();
+
+booksReverse(books);
 
 // 7. Вывести в консоль массив тех комментариев, 
 // почта пользователей которых содержит ".com"
 
-const commentsIncludes = comments.find(comment => comment.email.includes('.com')); 
+const commentsIncludes = comments.filter(comment => comment.email.includes('.com')); 
 
 // 8. Перебрать массив таким образом, что бы пользователи с id
 // меньше или равно 5 имели postId: 2, а те, у кого id больше 5, имели postId: 1
 
-comments.forEach(comment => comment.id <= 5 ? comment.postId = 2 : comment.postId = 1); 
+const commentsPostId = comments.map((comment) => ({...comment, postId:comment.id <= 5 ? comment.postId = 2 : comment.postId = 1})); 
 
 // 9. Перебрать массив, что бы объекты состояли только из айди и имени
 
 comments.forEach(comment => console.log(comment.id, comment.name)); 
 
+const commentsIdAndName = comments.map((comment) => ({id:comment.id, name:comment.name})); 
+
 // 10. Перебираем массив, добавляем объектам свойство 
 // isInvalid и проверяем: если длина тела сообщения (body) 
 // больше 180 символов - устанавливаем true, меньше - false.
 
-const isInvalid = comments => comments.forEach(comment => comment.isInvalid = comment.body.length > 180);
+const isInvalid = comments.map((comment) => ({ ...comment, isInvalid: comment.body.length > 180}));
 
-isInvalid(comments);
+console.log(isInvalid);
 
 // 11. Почитать про метод массива reduce. 
 // Используя его, вывести массив почт и провернуть

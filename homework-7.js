@@ -3,7 +3,7 @@ import { comments } from "./comments.js";
 //  что бы мы получил массив чисел, начиная с 5.
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const numbersFiltr = numbers.filter(number => number >= 5); 
+const getFilteredNumbers  = numbers.filter(number => number >= 5); 
 
 // 3. Создать массив строк, относящихся к любой сущности 
 // (название фильмов/книг, кухонные приборы, мебель и т.д.),
@@ -40,48 +40,52 @@ const books = [
   }
 ];
 
-const booksFind = books.find(book => book.name === 'Мастер и Маргарита'); 
+const findBookByName  = books.find(book => book.name === 'Мастер и Маргарита'); 
 
 // 4. Написать функцию, которая аргументом будет принимать массив и изменять его
 //  порядок на противоположный ("переворачивать") .
 //  Два вышеуказанных массива с помощью этой функции перевернуть.
 
-const booksReverse = books => books.reverse();
+const reverseArray = books => books.reverse();
 
-booksReverse(books);
+reverseArray(books);
 
 // 7. Вывести в консоль массив тех комментариев, 
 // почта пользователей которых содержит ".com"
 
-const commentsIncludes = comments.filter(comment => comment.email.includes('.com')); 
+const getCommentsWithComEmails  = comments.filter(comment => comment.email.includes('.com')); 
 
 // 8. Перебрать массив таким образом, что бы пользователи с id
 // меньше или равно 5 имели postId: 2, а те, у кого id больше 5, имели postId: 1
 
-const commentsPostId = comments.map((comment) => ({...comment, postId:comment.id <= 5 ? comment.postId = 2 : comment.postId = 1})); 
+const updateCommentsPostId  = comments.map((comment) => ({...comment, postId:comment.id <= 5 ? 2 : 1})); 
+
+console.log(updateCommentsPostId);
 
 // 9. Перебрать массив, что бы объекты состояли только из айди и имени
 
-const commentsIdAndName = comments.map((comment) => ({id:comment.id, name:comment.name})); 
+const getCommentsIdAndName  = comments.map((comment) => ({id:comment.id, name:comment.name})); 
 
 // 10. Перебираем массив, добавляем объектам свойство 
 // isInvalid и проверяем: если длина тела сообщения (body) 
 // больше 180 символов - устанавливаем true, меньше - false.
 
-const isInvalid = comments.map((comment) => ({ ...comment, isInvalid: comment.body.length > 180}));
+const setIsInvalidComments  = comments.map((comment) => ({ ...comment, isInvalid: comment.body.length > 180}));
 
 // 11. Почитать про метод массива reduce. 
 // Используя его, вывести массив почт и провернуть
 //  тоже самое с помощью метода map
 
-const emailsReduce = comments.reduce((acc, comment) => {
+const getEmailsWithReduce  = comments.reduce((acc, comment) => {
   acc.push(comment.email);
   return acc;
 }, []);
 
+const getEmailsWithMap  = comments.map(comment => comment.email);
+
 // 12. Почитать про методы toString(), join() 
 // и перебрав массив с задания №11, привести его к строке.
 
-console.log(emailsReduce.toString());
-console.log(emailsReduce.join('\n'));
+console.log(getEmailsWithReduce.toString());
+console.log(getEmailsWithReduce.join('\n'));
 

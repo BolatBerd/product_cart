@@ -62,8 +62,6 @@ const commentsPostId = comments.map((comment) => ({...comment, postId:comment.id
 
 // 9. Перебрать массив, что бы объекты состояли только из айди и имени
 
-comments.forEach(comment => console.log(comment.id, comment.name)); 
-
 const commentsIdAndName = comments.map((comment) => ({id:comment.id, name:comment.name})); 
 
 // 10. Перебираем массив, добавляем объектам свойство 
@@ -71,8 +69,6 @@ const commentsIdAndName = comments.map((comment) => ({id:comment.id, name:commen
 // больше 180 символов - устанавливаем true, меньше - false.
 
 const isInvalid = comments.map((comment) => ({ ...comment, isInvalid: comment.body.length > 180}));
-
-console.log(isInvalid);
 
 // 11. Почитать про метод массива reduce. 
 // Используя его, вывести массив почт и провернуть

@@ -17,93 +17,31 @@
       <button id="change-color-cards-btn">Сменить цвет всех карточки</button>
       <button id="open-google">Открыть Google.com</button>
       <button class="bg-aquamarine">Изменить цвет кнопки</button>
-      <ul class="product-list">
-        <li class="product_container card">
-          <img class="card_img" src="..\img\mousse.jpg" alt="Увлажняющий мусс">
-          <span class="product-category">для нормальной кожи</span>
-          <h3 class="card_name">Увлажняющий мусс</h3>
-          <p class="card_description">Глубоко увлажняют кожу лица, оставляя её мягкой и гладкой.</p>
-          <span class="product_composition-text">Состав:</span>
-          <ul class="product_composition">
-            <li>активные натуральные комплексы</li>
-            <li>витамины С, А, РР, В И Е</li>
-            <li>солнцезащитные компоненты</li>
-          </ul>
-          <div class="card_price-container">
-            <span class="card_price-text">Цена</span>
-            <span class="card_price">2 750 &#8381</span>
-          </div>
-        </li>
-        <li class="product_container card">
-          <img class="card_img" src="..\img\mask.jpg" alt="Увлажняющая маска">
-          <span class="product-category">для нормальной кожи</span>
-          <h3 class="card_name">Увлажняющая маска</h3>
-          <p class="card_description">Способствует удерживанию влаги в верхних слоях кожи.</p>
-          <span class="product_composition-text">Состав:</span>
-          <ul class="product_composition">
-            <li>воски</li>
-            <li>минералы</li>
-            <li>масла</li>
-          </ul>
-          <div class="card_price-container">
-            <span class="card_price-text">Цена</span>
-            <span class="card_price">3 500 &#8381</span>
-          </div>
-        </li>
-        <li class="product_container card">
-          <img class="card_img" src="..\img\gel.jpg" alt="Гель для умывания">
-          <span class="product-category">для нормальной кожи</span>
-          <h3 class="card_name">Гель для умывания</h3>
-          <p class="card_description">Интенсивно очищает, не повреждает защитный барьер кожи.</p>
-          <span class="product_composition-text">Состав:</span>
-          <ul class="product_composition">
-            <li>минералы</li>
-            <li>витамины С, А, РР, В И Е</li>
-            <li>солнцезащитные компоненты</li>
-          </ul>
-          <div class="card_price-container">
-            <span class="card_price-text">Цена</span>
-            <span class="card_price">1 650 &#8381</span>
-          </div>
-        </li>
-        <li class="product_container card">
-          <img class="card_img" src="..\img\set_1.jpg" alt="Подарочный набор №1">
-          <span class="product-category">для нормальной кожи</span>
-          <h3 class="card_name">Подарочный набор №1</h3>
-          <p class="card_description">Набор, состоящий из увлажняющего крема и маски.</p>
-          <span class="product_composition-text">Состав:</span>
-          <ul class="product_composition">
-            <li>воски</li>
-            <li>минералы</li>
-            <li>масла</li>
-          </ul>
-          <div class="card_price-container">
-            <span class="card_price-text">Цена</span>
-            <span class="card_price">4 750 &#8381</span>
-          </div>
-        </li>
-        <li class="product_container card">
-          <img class="card_img" src="..\img\set_5.jpg" alt="Подарочный набор №5">
-          <span class="product-category">для нормальной кожи</span>
-          <h3 class="card_name">Подарочный набор №5</h3>
-          <p class="card_description">Весь набор средств Invisible symphony, крем, маска, мусс и гель для умывания.</p>
-          <span class="product_composition-text">Состав:</span>
-          <ul class="product_composition">
-            <li>воски</li>
-            <li>минералы</li>
-            <li>масла</li>
-          </ul>
-          <div class="card_price-container">
-            <span class="card_price-text">Цена</span>
-            <span class="card_price">7 520 &#8381</span>
-          </div>
-        </li>
+     <!-- 3. По аналогии из лекции — создать и 
+      реализовать шаблон для продуктовых карточек. -->
+      <ul class="product-list">    
+        <template id="card-template">
+          <li class="product_container card">
+            <img class="card_img" data-field="img" src="" alt="">
+            <span class="product-category" data-field="category"></span>
+            <h3 class="card_name" data-field="name"></h3>
+            <p class="card_description" data-field="description"></p>
+            <span class="product_composition-text">Состав:</span>
+            <ul class="product_composition" data-field="composition"></ul>
+            <div class="card_price-container">
+              <span class="card_price-text">Цена</span>
+              <span class="card_price" data-field="price"></span>
+            </div>
+          </li>
+        </template>
       </ul>
     </div>
     <script src="main.js"></script>
     <script src="homework-5.js"></script>
     <script src="homework-6.js"></script>
+    <script type="module" src="cards.js"></script>
     <script type="module" src="comments.js"></script>
     <script type="module" src="homework-7.js"></script>
+    <script type="module" src="homework-8.js"></script>
   </body>
 </html>

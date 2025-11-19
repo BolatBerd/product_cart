@@ -5,72 +5,98 @@
 // для дальнейшей работы с ним.
 export const cards = [
   {
-    img: "../img/mousse.jpg",
-    alt: "Увлажняющий мусс",
+    img: {
+      source: "../img/mousse.jpg",
+      alt: "Увлажняющий мусс"
+    },
     category: "для нормальной кожи",
     name: "Увлажняющий мусс",
     description: "Глубоко увлажняют кожу лица, оставляя её мягкой и гладкой.",
-    compositionText: "Состав:",
-    composition: [
-      "активные натуральные комплексы",
-      "витамины С, А, РР, В И Е",
-      "солнцезащитные компоненты"
-    ],
-    priceText: "Цена",
-    price: "2 750 ₽"
+    composition: {
+      title: "Состав:",
+      items: [
+        "активные натуральные комплексы",
+        "витамины С, А, РР, В И Е",
+        "солнцезащитные компоненты"
+      ]
+    },
+    price: {
+      title: "Цена",
+      number: "2 750"
+    }
   },
 
   {
-    img: "../img/mask.jpg",
-    alt: "Увлажняющая маска",
+    img: {
+      source: "../img/mask.jpg",
+      alt: "Увлажняющая маска"
+    },
     category: "для нормальной кожи",
     name: "Увлажняющая маска",
     description: "Способствует удерживанию влаги в верхних слоях кожи.",
-    compositionText: "Состав:",
-    composition: ["воски", "минералы", "масла"],
-    priceText: "Цена",
-    price: "3 500 ₽"
+    composition: {
+      title: "Состав:",
+      items: ["воски", "минералы", "масла"]},
+    price: {
+      title: "Цена",
+      number: "3 500"
+    }
   },
 
   {
-    img: "../img/gel.jpg",
-    alt: "Гель для умывания",
+    img: {
+      source: "../img/gel.jpg",
+      alt: "Гель для умывания"
+    },
     category: "для нормальной кожи",
     name: "Гель для умывания",
     description:
       "Интенсивно очищает, не повреждает защитный барьер кожи.",
-    compositionText: "Состав:",
-    composition: [
+   composition: {
+      title: "Состав:",
+      items: [
       "минералы",
       "витамины С, А, РР, В И Е",
       "солнцезащитные компоненты"
-    ],
-    priceText: "Цена",
-    price: "1 650 ₽"
+    ]},
+    price: {
+      title: "Цена",
+      number: "1 650"
+    }
   },
 
   {
-    img: "../img/set_1.jpg",
-    alt: "Подарочный набор №1",
+    img: {
+      source: "../img/set_1.jpg",
+      alt: "Подарочный набор №1"
+    },
     category: "для нормальной кожи",
     name: "Подарочный набор №1",
     description: "Набор, состоящий из увлажняющего крема и маски.",
-    compositionText: "Состав:",
-    composition: ["воски", "минералы", "масла"],
-    priceText: "Цена",
-    price: "4 750 ₽"
+    composition: {
+      title: "Состав:",
+      items: ["воски", "минералы", "масла"]},
+    price: {
+      title: "Цена",
+      number: "4 750"
+    }
   },
 
   {
-    img: "../img/set_5.jpg",
-    alt: "Подарочный набор №5",
+    img: {
+      source:"../img/set_5.jpg",
+      alt: "Подарочный набор №5"
+    },
     category: "для нормальной кожи",
     name: "Подарочный набор №5",
     description:
       "Весь набор средств Invisible symphony, крем, маска, мусс и гель для умывания.",
-    compositionText: "Состав:",
-    composition: ["воски", "минералы", "масла"],
-    priceText: "Цена",
-    price: "7 520 ₽"
+    composition: {
+      title: "Состав:",
+      items: ["воски", "минералы", "масла"]},
+    price: {
+      title: "Цена",
+      number: "7 520"
+    }
   }
 ];

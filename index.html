@@ -22,15 +22,15 @@
       <ul class="product-list">    
         <template id="card-template">
           <li class="product_container card">
-            <img class="card_img" data-field="img" src="" alt="">
+            <img class="card_img" data-field="img" />
             <span class="product-category" data-field="category"></span>
             <h3 class="card_name" data-field="name"></h3>
             <p class="card_description" data-field="description"></p>
-            <span class="product_composition-text">Состав:</span>
-            <ul class="product_composition" data-field="composition"></ul>
+            <span class="product_composition-text" data-field="compositionTitle"></span>
+            <ul class="product_composition" data-field="compositionItems"></ul>
             <div class="card_price-container">
-              <span class="card_price-text">Цена</span>
-              <span class="card_price" data-field="price"></span>
+              <span class="card_price-text" data-field="priceTitle"></span>
+              <span class="card_price" data-field="priceNumber"></span>
             </div>
           </li>
         </template>

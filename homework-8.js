@@ -29,34 +29,52 @@
 
 import { cards } from "./cards.js";
 
+function fillTemplate(templateClone, card) {
+  templateClone.querySelectorAll("[data-field]").forEach(el => {
+    const key = el.dataset.field;
+    const value = card[key];
+
+    if (key === "img") {
+      el.src = value.source;
+      el.alt = value.alt;
+
+    }
+    else if (key === "name") {
+      el.textContent = card.name;
+    }
+    else if (key === "description") {
+      el.textContent = card.description;
+    }
+    else if (key === "compositionTitle") {
+      el.textContent = card.category;
+    }
+    else if (key === "compositionTitle") {
+      el.textContent = card.composition.title;
+    }
+    else if (key === "compositionItems") {
+      el.innerHTML = "";
+      card.composition.items.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        el.appendChild(li);
+      });
+    }
+    else if (key === "priceTitle") {
+      el.textContent = card.price.title;
+    }
+    else if(key === "priceNumber"){
+      el.textContent = card.price.number + "₽";
+    }
+  });
+}
+
 const template = document.getElementById("card-template");
 const productList = document.querySelector(".product-list");
 
 cards.forEach(card => {
   const clone = template.content.cloneNode(true);
 
-  clone.querySelectorAll("[data-field]").forEach(el => {
-    const key = el.dataset.field;
-    const value = card[key];
-
-    if (key === "img") {
-      el.src = value;
-      el.alt = card.alt;
-    }
-
-    else if (key === "composition") {
-      el.innerHTML = "";
-      value.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = item;
-        el.appendChild(li);
-      });
-    }
- 
-    else {
-      el.textContent = value;
-    }
-  });
+  fillTemplate(clone, card);
 
   productList.appendChild(clone);
 });
@@ -66,7 +84,7 @@ cards.forEach(card => {
 // 5. Используя метод .reduce(), получить строку, 
 // которая состоит из названий продуктовых карточек, разделенных точкой с запятой
 
-const getCardNameWithReduce  = cards.reduce((acc, card) => {
+const getCardNameWithReduce = cards.reduce((acc, card) => {
   acc.push(card.name);
   return acc;
 }, []);
@@ -74,7 +92,7 @@ const getCardNameWithReduce  = cards.reduce((acc, card) => {
 // 6. Используя метод .reduce(), получить массив объектов, 
 // где ключем является название продукта, а значением - его описание.
 
-const getNameAndDescriptionWithReduce  = cards.reduce((acc, card) => {
+const getNameAndDescriptionWithReduce = cards.reduce((acc, card) => {
   acc.push({[card.name]: card.description});
   return acc;
 }, []);
@@ -84,6 +102,7 @@ const getNameAndDescriptionWithReduce  = cards.reduce((acc, card) => {
 // и в зависимости от результата - будет выводить это количество.
 //  Должна быть защита от введенных других значений (имеется ввиду проверка if)
 
+
 function renderCards(count) {
   productList.innerHTML = "";
 
@@ -92,26 +111,7 @@ function renderCards(count) {
   limitedCards.forEach(card => {
     const clone = template.content.cloneNode(true);
 
-    clone.querySelectorAll("[data-field]").forEach(el => {
-      const key = el.dataset.field;
-      const value = card[key];
-
-      if (key === "img") {
-        el.src = value;
-        el.alt = card.alt;
-      }
-      else if (key === "composition") {
-        el.innerHTML = "";
-        value.forEach(item => {
-          const li = document.createElement("li");
-          li.textContent = item;
-          el.appendChild(li);
-        });
-      }
-      else {
-        el.textContent = value;
-      }
-    });
+    fillTemplate(clone, card);
 
     productList.appendChild(clone);
   });

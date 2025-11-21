@@ -1,85 +1,29 @@
-
-// 3. По аналогии из лекции — создать и реализовать шаблон для продуктовых карточек.
-// import { cards } from "./cards.js";
-
-// const template = document.getElementById("card-template");
-// const productList = document.querySelector(".product-list");
-
-// cards.forEach(card => {
-//   const clone = template.content.cloneNode(true);
-
-//   clone.querySelector(".card_img").src = card.img;
-//   clone.querySelector(".card_img").alt = card.alt;
-//   clone.querySelector(".product-category").textContent = card.category;
-//   clone.querySelector(".card_name").textContent = card.name;
-//   clone.querySelector(".card_description").textContent = card.description;
-
-//   clone.querySelector(".comp-first").textContent = card.composition[0];
-//   clone.querySelector(".comp-second").textContent = card.composition[1];
-//   clone.querySelector(".comp-third").textContent = card.composition[2];
-
-//   clone.querySelector(".card_price").innerHTML = card.price;
-
-//   productList.appendChild(clone);
-// });
-
-// 4*. Подумать, как можно оптимизировать дублирование querySelector,
-//  textContent и прочего, о чем говорилось на лекции.
-//  1 вариант - маппинг, 2 вариант - использование data-атрибутов
-
 import { cards } from "./cards.js";
 
-function fillTemplate(templateClone, card) {
-  templateClone.querySelectorAll("[data-field]").forEach(el => {
-    const key = el.dataset.field;
-    const value = card[key];
-
-    if (key === "img") {
-      el.src = value.source;
-      el.alt = value.alt;
-
-    }
-    else if (key === "name") {
-      el.textContent = card.name;
-    }
-    else if (key === "description") {
-      el.textContent = card.description;
-    }
-    else if (key === "compositionTitle") {
-      el.textContent = card.category;
-    }
-    else if (key === "compositionTitle") {
-      el.textContent = card.composition.title;
-    }
-    else if (key === "compositionItems") {
-      el.innerHTML = "";
-      card.composition.items.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = item;
-        el.appendChild(li);
-      });
-    }
-    else if (key === "priceTitle") {
-      el.textContent = card.price.title;
-    }
-    else if(key === "priceNumber"){
-      el.textContent = card.price.number + "₽";
-    }
-  });
-}
+// 3. По аналогии из лекции — создать и 
+// реализовать шаблон для продуктовых карточек.
 
 const template = document.getElementById("card-template");
 const productList = document.querySelector(".product-list");
 
-cards.forEach(card => {
-  const clone = template.content.cloneNode(true);
+function fillTemplate(clone, card) { 
+  clone.querySelector(".card_img").src = `../img/${card.imgName}.jpg`;
+  clone.querySelector(".card_img").alt = card.alt;
+  clone.querySelector(".product-category").textContent = card.category;
+  clone.querySelector(".card_name").textContent = card.name;
+  clone.querySelector(".card_description").textContent = card.description;
 
-  fillTemplate(clone, card);
-
-  productList.appendChild(clone);
-});
-
-
+  const compList = clone.querySelector(".product_composition");
+  clone.querySelector(".product_composition").textContent  = 'Состав:';
+  card.composition.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    compList.appendChild(li);
+  });
+  
+  clone.querySelector(".card_price-text").textContent  = 'Цена';
+  clone.querySelector(".card_price").textContent  = `${card.price}₽`;
+};
 
 // 5. Используя метод .reduce(), получить строку, 
 // которая состоит из названий продуктовых карточек, разделенных точкой с запятой
@@ -102,7 +46,6 @@ const getNameAndDescriptionWithReduce = cards.reduce((acc, card) => {
 // и в зависимости от результата - будет выводить это количество.
 //  Должна быть защита от введенных других значений (имеется ввиду проверка if)
 
-
 function renderCards(count) {
   productList.innerHTML = "";
 
@@ -118,15 +61,15 @@ function renderCards(count) {
 }
 
 function askCardsCount() {
-  while (true) {
-    const userInput = prompt("Сколько карточек отобразить? От 1 до 5");
-    const number = Number(userInput);
-    if (!isNaN(number) && number >= 1 && number <= 5) return number;
-    alert("Введите число от 1 до 5!");
+  const userInput = prompt("Сколько карточек отобразить? От 1 до 5");
+  const numberUserInput = Number(userInput);
+
+  if (!isNaN(numberUserInput) && numberUserInput >= 1 && numberUserInput <= 5) {
+    return numberUserInput;
   }
+
+  alert("Введите число от 1 до 5!");
+  return askCardsCount();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const count = askCardsCount();
-  renderCards(count);
-});
+document.addEventListener("DOMContentLoaded", () => renderCards(askCardsCount()));

@@ -8,13 +8,13 @@ const productList = document.querySelector(".product-list");
 
 function fillTemplate(clone, card) { 
   clone.querySelector(".card_img").src = `../img/${card.imgName}.jpg`;
-  clone.querySelector(".card_img").alt = card.alt;
+  clone.querySelector(".card_img").alt = card.name;
   clone.querySelector(".product-category").textContent = card.category;
   clone.querySelector(".card_name").textContent = card.name;
   clone.querySelector(".card_description").textContent = card.description;
 
   const compList = clone.querySelector(".product_composition");
-  clone.querySelector(".product_composition").textContent  = 'Состав:';
+  compList.textContent  = 'Состав:';
   card.composition.forEach(item => {
     const li = document.createElement("li");
     li.textContent = item;

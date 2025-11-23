@@ -14,14 +14,14 @@ function fillTemplate(clone, card) {
   clone.querySelector(".card_description").textContent = card.description;
 
   const compList = clone.querySelector(".product_composition");
-  compList.textContent  = 'Состав:';
+  compList.textContent = 'Состав:';
   card.composition.forEach(item => {
     const li = document.createElement("li");
     li.textContent = item;
     compList.appendChild(li);
   });
   
-  clone.querySelector(".card_price-text").textContent  = 'Цена';
+  clone.querySelector(".card_price-text").textContent = 'Цена';
   clone.querySelector(".card_price").textContent  = `${card.price}₽`;
 };
 

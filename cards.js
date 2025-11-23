@@ -22,7 +22,7 @@ export const cards = [
     category: "для нормальной кожи",
     name: "Увлажняющая маска",
     description: "Способствует удерживанию влаги в верхних слоях кожи.",
-    composition:[
+    composition: [
       "воски",
       "минералы",
       "масла"

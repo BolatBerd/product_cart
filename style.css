@@ -174,7 +174,6 @@
   background: #FFFFFF;
   border-radius: 6px;
   overflow: hidden;
-
 }
 
 .footer__form input {
@@ -216,7 +215,6 @@
   margin-top: 30px;
   text-align: center;
   font-size: 14px;
-  /* padding-left: 130px; */
 }
 
 .line {
@@ -359,6 +357,18 @@
   display: block;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
+body.modal-open .overlay {
+  display: block;
+}
+
+body.modal-open .modal {
+  display: block;
+  animation: modalSlideIn 0.18s ease-out;
+}
 .modal-content {
   display: flex;
   flex-direction: column;

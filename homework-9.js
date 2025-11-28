@@ -1,3 +1,4 @@
+
 // 4. К Форме, которая прикреплена в футере - добавить логику:
 // email должен соответствовать стандартам (добавить валидацию),
 //  если он не заполнен - форма не отправляется. Кнопка "Подписаться"
@@ -5,7 +6,7 @@
 // мы будем выводить консоль лог в виде объекта:  { email: 'введенная почта' }
 
 const footerForm = document.querySelector('.footer__form');
-const emailInput = footerForm.querySelector('input[type="email"]');
+const emailInput = footerForm.querySelector('#form__email');
 
 footerForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -44,6 +45,7 @@ footerForm.addEventListener('submit', (e) => {
 // (используем сущность new Date())
 
 const registerForm = document.getElementById('register-form');
+let currentUser = {};
 
 if (registerForm) {
   const errorEl = registerForm.querySelector('.register-error');
@@ -87,18 +89,12 @@ if (registerForm) {
     
 // 6. Сохраняем этот объект в переменную для дальнейшего использования.
     
-    const user = {
-      firstName: formData.get('firstName')?.toString() || '',
-      lastName: formData.get('lastName')?.toString() || '',
-      dob: formData.get('dob')?.toString() || '',
-      login: formData.get('login')?.toString() || '',
-      password: password, 
-      createdOn: new Date()
+    user = {
+      ...Object.fromEntries(formData.entries()),
+      createdDate: new Date()
     };
 
     console.log(user);
-
-    window.registeredUser = user;
 
     alert('Регистрация успешна');
     registerForm.reset();
@@ -125,25 +121,16 @@ const modalClose = document.getElementById('modal-close');
 const authForm = document.getElementById('auth-form');
 
 function openModal() {
-
   authModal.classList.add('modal-showed');
-
-  overlay.style.display = 'block';
-
-  document.body.style.overflow = 'hidden';
+  document.body.classList.add('modal-open');
 }
 
 function closeModal() {
-
   authModal.classList.remove('modal-showed');
-
-  overlay.style.display = 'none';
-
-  document.body.style.overflow = 'auto';
-
+  document.body.classList.remove('modal-open');
+  
   if (authForm) authForm.reset();
 }
-
 if (authBtn) {
   authBtn.addEventListener('click', openModal);
 }
@@ -182,23 +169,21 @@ if (authForm) {
 // пользователь получает сообщение об ошибке, например: 
 // "Неверный логин или пароль".
     
-    const loginAttempt = authForm.querySelector('input[name="login"]').value.trim();
-    const passwordAttempt = authForm.querySelector('input[name="password"]').value.trim();
+    const loginAttempt = authForm.querySelector('#form__login').value.trim();
+    const passwordAttempt = authForm.querySelector('#form__password').value.trim();
 
 // 10. Создаем глобальную переменную "currentUser".
 //  После успешной авторизации - присваиваем ей объект с задания №6 
 // и добавляем свойство lastLogin и присваиваем ему дату/время 
 // последнего входа, используя new Date()
-    
-    const currentUser = window.registeredUser;
+    currentUser = {...user, lastLogin: new Date()};
 
     if (!currentUser) {
       alert('Пользователь не найден. Сначала зарегистрируйтесь.');
       return;
     }
     if (loginAttempt === currentUser.login && passwordAttempt === currentUser.password) {
-      console.log('Вход успешен:', { login: loginAttempt, at: new Date() });
-      alert('Вход успешен!');
+      console.log('Вход успешен: ', {currentUser});
       closeModal();
     } else {
       alert('Неверный логин или пароль');

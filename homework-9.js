@@ -45,7 +45,7 @@ footerForm.addEventListener('submit', (e) => {
 // (используем сущность new Date())
 
 const registerForm = document.getElementById('register-form');
-let currentUser = {};
+let currentUser = undefined;
 
 if (registerForm) {
   const errorEl = registerForm.querySelector('.register-error');

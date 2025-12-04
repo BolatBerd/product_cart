@@ -82,7 +82,7 @@ if (registerForm) {
         errorEl.textContent = '';
         errorEl.style.display = 'none';
       }
-      if (confirmEl) confirmEl.classList.remove('invalid');
+      // if (confirmEl) confirmEl.classList.remove('invalid');
     }
 
     const formData = new FormData(registerForm);
@@ -185,6 +185,7 @@ if (authForm) {
     if (loginAttempt === currentUser.login && passwordAttempt === currentUser.password) {
       console.log('Вход успешен: ', {currentUser});
       closeModal();
+      alert('Вход успешен');
     } else {
       alert('Неверный логин или пароль');
     }

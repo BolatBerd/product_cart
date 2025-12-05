@@ -46,6 +46,7 @@ footerForm.addEventListener('submit', (e) => {
 
 const registerForm = document.getElementById('register-form');
 let currentUser = undefined;
+let user = undefined;
 
 if (registerForm) {
   const errorEl = registerForm.querySelector('.register-error');

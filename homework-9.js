@@ -1,3 +1,56 @@
+class Modal {
+  constructor(modalId) {
+    this.modal = document.getElementById(modalId);
+    this.overlay = document.querySelector('.overlay');
+    this.closeSelector = '.modal-close';
+    this.closeBtn = this.modal.querySelector(this.closeSelector);
+    this.openedClass = 'modal-showed';
+    this.screenLock = 'modal-open';
+    this._onKeydown = this._onKeydown.bind(this);
+    this._onOverlayClick = this._onOverlayClick.bind(this);
+    this._onCloseClick = this._onCloseClick.bind(this);
+    this._lastFocused = null;
+  }
+  
+ open() {
+    if (this.isOpen()) return;
+    this._lastFocused = document.activeElement;
+    this.modal.classList.add(this.openedClass);
+
+    document.body.classList.add(this.screenLock);
+    document.addEventListener('keydown', this._onKeydown);
+    
+    if (this.overlay) {
+      this.overlay.addEventListener('click', this._onOverlayClick);
+    }
+    if (this.closeBtn) {
+      this.closeBtn.addEventListener('click', this._onCloseClick);
+    }
+    this.modal.focus();
+  }
+
+  close() { 
+    if (!this.isOpen()) return;
+    this.modal.classList.remove(this.openedClass);
+    document.body.classList.remove(this.screenLock);
+  }
+
+  isOpen() {
+    return this.modal.classList.contains(this.openedClass);
+  }
+  _onKeydown(e) {
+    if (e.key === 'Escape') {
+      this.close();
+    }
+  }
+  _onOverlayClick() {
+    this.close();
+  }
+  _onCloseClick(e) {
+    e.preventDefault();
+    this.close();
+  }
+}
 
 // 4. К Форме, которая прикреплена в футере - добавить логику:
 // email должен соответствовать стандартам (добавить валидацию),
@@ -43,10 +96,21 @@ footerForm.addEventListener('submit', (e) => {
 //  как в задании №4. Дополнительно мы должны добавить 
 // к этому объекту свойство createdOn и указать туда время создания 
 // (используем сущность new Date())
-
 const registerForm = document.getElementById('register-form');
 let currentUser = undefined;
 let user = undefined;
+
+class Form {
+  constructor(formId){
+    this.form = document.getElementById(formId);
+    this.registerBtn = '.registerBtn';
+    
+  }
+  register(){
+    
+  }
+}
+
 
 if (registerForm) {
   const errorEl = registerForm.querySelector('.register-error');
@@ -83,9 +147,8 @@ if (registerForm) {
         errorEl.textContent = '';
         errorEl.style.display = 'none';
       }
-      // if (confirmEl) confirmEl.classList.remove('invalid');
     }
-
+    
     const formData = new FormData(registerForm);
     
 // 6. Сохраняем этот объект в переменную для дальнейшего использования.
@@ -94,7 +157,7 @@ if (registerForm) {
       ...Object.fromEntries(formData.entries()),
       createdDate: new Date()
     };
-
+    
     console.log(user);
 
     alert('Регистрация успешна');
@@ -121,14 +184,23 @@ const overlay = document.getElementById('overlay');
 const modalClose = document.getElementById('modal-close');
 const authForm = document.getElementById('auth-form');
 
+let authModalInstance = null;
+if (authModal) {
+  authModalInstance = new Modal('auth-modal', {
+    overlayId: 'overlay',
+    closeSelector: '#modal-close'
+  });
+}
 function openModal() {
-  authModal.classList.add('modal-showed');
-  document.body.classList.add('modal-open');
+ if (authModalInstance) {
+    authModalInstance.open();
+ }
 }
 
 function closeModal() {
-  authModal.classList.remove('modal-showed');
-  document.body.classList.remove('modal-open');
+  if (authModalInstance) {
+    authModalInstance.close();
+  }
   
   if (authForm) authForm.reset();
 }
@@ -177,6 +249,7 @@ if (authForm) {
 //  После успешной авторизации - присваиваем ей объект с задания №6 
 // и добавляем свойство lastLogin и присваиваем ему дату/время 
 // последнего входа, используя new Date()
+
     currentUser = {...user, lastLogin: new Date()};
 
     if (!currentUser) {

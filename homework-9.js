@@ -101,67 +101,70 @@ let currentUser = undefined;
 let user = undefined;
 
 class Form {
-  constructor(formId){
+  constructor(formId) {
     this.form = document.getElementById(formId);
-    this.registerBtn = '.registerBtn';
-    
   }
-  register(){
-    
+
+  getValues() {
+    const formData = new FormData(this.form);
+    const values = Object.fromEntries(formData.entries());
+    // trim всех строк
+    for (let key in values) {
+      if (typeof values[key] === 'string') {
+        values[key] = values[key].trim();
+      }
+    }
+    return values;
+  }
+
+  validate() {
+    if (!this.form.checkValidity()) {
+      this.form.reportValidity();
+      return false;
+    }
+    return true;
+  }
+
+  reset() {
+    this.form.reset();
+  }
+
+  validateInput(inputName) {
+    const input = this.form.elements[inputName];
+    return input.checkValidity();
   }
 }
 
-
 if (registerForm) {
+  const registerObj = new Form('register-form');
   const errorEl = registerForm.querySelector('.register-error');
-  const passwordEl = registerForm.querySelector('#password');
-  const confirmEl = registerForm.querySelector('#confirmPassword');
 
   registerForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    Array.from(registerForm.elements).forEach(el => {
-      if (el.tagName === 'INPUT' && (el.type === 'text' || el.type === 'email' || el.type === 'password')) {
-        el.value = el.value.trim();
-      }
-    });
-
-    if (!registerForm.checkValidity()) {
-      registerForm.reportValidity();
+    if (!registerObj.validate()) {
       return;
     }
 
-    const password = passwordEl ? passwordEl.value : '';
-    const confirmPassword = confirmEl ? confirmEl.value : '';
+    const values = registerObj.getValues();
 
-    if (password !== confirmPassword) {
-      if (errorEl) {
-        errorEl.textContent = 'Пароли не совпадают. Регистрация отклонена.';
-        errorEl.style.display = 'block';
-      } else {
-        alert('Пароли не совпадают. Регистрация отклонена.');
-      }
+    if (values.password !== values.confirmPassword) {
+      errorEl.textContent = 'Пароли не совпадают. Регистрация отклонена.';
+      errorEl.style.display = 'block';
       return;
-    } else {
-      if (errorEl) {
-        errorEl.textContent = '';
-        errorEl.style.display = 'none';
-      }
     }
-    
-    const formData = new FormData(registerForm);
-    
-// 6. Сохраняем этот объект в переменную для дальнейшего использования.
-    
+
+    errorEl.textContent = '';
+    errorEl.style.display = 'none';
+
     user = {
-      ...Object.fromEntries(formData.entries()),
+      ...values,
       createdDate: new Date()
     };
-    
-    console.log(user);
 
+    console.log(user);
     alert('Регистрация успешна');
-    registerForm.reset();
+    registerObj.reset();
   });
 }
 
@@ -201,7 +204,7 @@ function closeModal() {
   if (authModalInstance) {
     authModalInstance.close();
   }
-  
+
   if (authForm) authForm.reset();
 }
 if (authBtn) {
@@ -221,42 +224,29 @@ document.addEventListener('keydown', (e) => {
 });
 
 if (authForm) {
+  const authObj = new Form('auth-form');
+
   authForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    Array.from(authForm.elements).forEach(el => {
-      if (el.tagName === 'INPUT' && (el.type === 'text' || el.type === 'password')) {
-        el.value = el.value.trim();
-      }
-    });
-    if (!authForm.checkValidity()) {
-      authForm.reportValidity();
+
+    // Валидация формы
+    if (!authObj.validate()) {
       return;
     }
 
-// 9. В открытой модалке у нас будет форма авторизации: 
-// логин, пароль, кнопка "Войти". 
-// Используя объект с задания №6, проверяем, 
-// ввели ли мы правильные данные? Если да - то по нажатию на кнопку "Войти",
-//  модальное окно должно закрыться и пользователь должен получить сообщение
-//  об успешном входе, если нет - модальное окно не закрывается, 
-// пользователь получает сообщение об ошибке, например: 
-// "Неверный логин или пароль".
-    
-    const loginAttempt = authForm.querySelector('#form__login').value.trim();
-    const passwordAttempt = authForm.querySelector('#form__password').value.trim();
+    // Получаем значения
+    const values = authObj.getValues();
 
-// 10. Создаем глобальную переменную "currentUser".
-//  После успешной авторизации - присваиваем ей объект с задания №6 
-// и добавляем свойство lastLogin и присваиваем ему дату/время 
-// последнего входа, используя new Date()
-
-    currentUser = {...user, lastLogin: new Date()};
-
-    if (!currentUser) {
+    // Проверяем есть ли зарегистрированный пользователь
+    if (!user) {
       alert('Пользователь не найден. Сначала зарегистрируйтесь.');
       return;
     }
-    if (loginAttempt === currentUser.login && passwordAttempt === currentUser.password) {
+
+    // Проверяем логин и пароль
+    if (values.login === user.login && values.password === user.password) {
+      // Создаём currentUser с добавлением времени входа
+      currentUser = {...user, lastLogin: new Date()};
       console.log('Вход успешен: ', {currentUser});
       closeModal();
       alert('Вход успешен');

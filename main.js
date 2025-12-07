@@ -5,6 +5,7 @@ import './homework-6.js';
 import './homework-7.js';
 import './homework-8.js';
 import './homework-9.js';
+import './homework-10.js';
 
 const productCard = document.querySelector('.card');
 const productCards = document.querySelectorAll('.card');

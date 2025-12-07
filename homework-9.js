@@ -108,7 +108,7 @@ class Form {
   getValues() {
     const formData = new FormData(this.form);
     const values = Object.fromEntries(formData.entries());
-    // trim всех строк
+    
     for (let key in values) {
       if (typeof values[key] === 'string') {
         values[key] = values[key].trim();
@@ -229,23 +229,18 @@ if (authForm) {
   authForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // Валидация формы
     if (!authObj.validate()) {
       return;
     }
 
-    // Получаем значения
     const values = authObj.getValues();
 
-    // Проверяем есть ли зарегистрированный пользователь
     if (!user) {
       alert('Пользователь не найден. Сначала зарегистрируйтесь.');
       return;
     }
 
-    // Проверяем логин и пароль
     if (values.login === user.login && values.password === user.password) {
-      // Создаём currentUser с добавлением времени входа
       currentUser = {...user, lastLogin: new Date()};
       console.log('Вход успешен: ', {currentUser});
       closeModal();

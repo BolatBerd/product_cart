@@ -1,57 +1,5 @@
-class Modal {
-  constructor(modalId) {
-    this.modal = document.getElementById(modalId);
-    this.overlay = document.querySelector('.overlay');
-    this.closeSelector = '.modal-close';
-    this.closeBtn = this.modal.querySelector(this.closeSelector);
-    this.openedClass = 'modal-showed';
-    this.screenLock = 'modal-open';
-    this._onKeydown = this._onKeydown.bind(this);
-    this._onOverlayClick = this._onOverlayClick.bind(this);
-    this._onCloseClick = this._onCloseClick.bind(this);
-    this._lastFocused = null;
-  }
-  
- open() {
-    if (this.isOpen()) return;
-    this._lastFocused = document.activeElement;
-    this.modal.classList.add(this.openedClass);
-
-    document.body.classList.add(this.screenLock);
-    document.addEventListener('keydown', this._onKeydown);
-    
-    if (this.overlay) {
-      this.overlay.addEventListener('click', this._onOverlayClick);
-    }
-    if (this.closeBtn) {
-      this.closeBtn.addEventListener('click', this._onCloseClick);
-    }
-    this.modal.focus();
-  }
-
-  close() { 
-    if (!this.isOpen()) return;
-    this.modal.classList.remove(this.openedClass);
-    document.body.classList.remove(this.screenLock);
-  }
-
-  isOpen() {
-    return this.modal.classList.contains(this.openedClass);
-  }
-  _onKeydown(e) {
-    if (e.key === 'Escape') {
-      this.close();
-    }
-  }
-  _onOverlayClick() {
-    this.close();
-  }
-  _onCloseClick(e) {
-    e.preventDefault();
-    this.close();
-  }
-}
-
+import { Modal } from './modal.js';
+import {Form} from './form.js';
 // 4. К Форме, которая прикреплена в футере - добавить логику:
 // email должен соответствовать стандартам (добавить валидацию),
 //  если он не заполнен - форма не отправляется. Кнопка "Подписаться"
@@ -99,41 +47,6 @@ footerForm.addEventListener('submit', (e) => {
 const registerForm = document.getElementById('register-form');
 let currentUser = undefined;
 let user = undefined;
-
-class Form {
-  constructor(formId) {
-    this.form = document.getElementById(formId);
-  }
-
-  getValues() {
-    const formData = new FormData(this.form);
-    const values = Object.fromEntries(formData.entries());
-    
-    for (let key in values) {
-      if (typeof values[key] === 'string') {
-        values[key] = values[key].trim();
-      }
-    }
-    return values;
-  }
-
-  validate() {
-    if (!this.form.checkValidity()) {
-      this.form.reportValidity();
-      return false;
-    }
-    return true;
-  }
-
-  reset() {
-    this.form.reset();
-  }
-
-  validateInput(inputName) {
-    const input = this.form.elements[inputName];
-    return input.checkValidity();
-  }
-}
 
 if (registerForm) {
   const registerObj = new Form('register-form');

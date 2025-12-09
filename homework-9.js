@@ -1,4 +1,5 @@
-
+import { Modal } from './modal.js';
+import {Form} from './form.js';
 // 4. К Форме, которая прикреплена в футере - добавить логику:
 // email должен соответствовать стандартам (добавить валидацию),
 //  если он не заполнен - форма не отправляется. Кнопка "Подписаться"
@@ -43,61 +44,40 @@ footerForm.addEventListener('submit', (e) => {
 //  как в задании №4. Дополнительно мы должны добавить 
 // к этому объекту свойство createdOn и указать туда время создания 
 // (используем сущность new Date())
-
 const registerForm = document.getElementById('register-form');
 let currentUser = undefined;
+let user = undefined;
 
 if (registerForm) {
+  const registerObj = new Form('register-form');
   const errorEl = registerForm.querySelector('.register-error');
-  const passwordEl = registerForm.querySelector('#password');
-  const confirmEl = registerForm.querySelector('#confirmPassword');
 
   registerForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    Array.from(registerForm.elements).forEach(el => {
-      if (el.tagName === 'INPUT' && (el.type === 'text' || el.type === 'email' || el.type === 'password')) {
-        el.value = el.value.trim();
-      }
-    });
-
-    if (!registerForm.checkValidity()) {
-      registerForm.reportValidity();
+    if (!registerObj.isValidate()) {
       return;
     }
 
-    const password = passwordEl ? passwordEl.value : '';
-    const confirmPassword = confirmEl ? confirmEl.value : '';
+    const values = registerObj.getValues();
 
-    if (password !== confirmPassword) {
-      if (errorEl) {
-        errorEl.textContent = 'Пароли не совпадают. Регистрация отклонена.';
-        errorEl.style.display = 'block';
-      } else {
-        alert('Пароли не совпадают. Регистрация отклонена.');
-      }
+    if (values.password !== values.confirmPassword) {
+      errorEl.textContent = 'Пароли не совпадают. Регистрация отклонена.';
+      errorEl.style.display = 'block';
       return;
-    } else {
-      if (errorEl) {
-        errorEl.textContent = '';
-        errorEl.style.display = 'none';
-      }
-      // if (confirmEl) confirmEl.classList.remove('invalid');
     }
 
-    const formData = new FormData(registerForm);
-    
-// 6. Сохраняем этот объект в переменную для дальнейшего использования.
-    
+    errorEl.textContent = '';
+    errorEl.style.display = 'none';
+
     user = {
-      ...Object.fromEntries(formData.entries()),
+      ...values,
       createdDate: new Date()
     };
 
     console.log(user);
-
     alert('Регистрация успешна');
-    registerForm.reset();
+    registerObj.reset();
   });
 }
 
@@ -120,15 +100,24 @@ const overlay = document.getElementById('overlay');
 const modalClose = document.getElementById('modal-close');
 const authForm = document.getElementById('auth-form');
 
+let authModalInstance = null;
+if (authModal) {
+  authModalInstance = new Modal('auth-modal', {
+    overlayId: 'overlay',
+    closeSelector: '#modal-close'
+  });
+}
 function openModal() {
-  authModal.classList.add('modal-showed');
-  document.body.classList.add('modal-open');
+ if (authModalInstance) {
+    authModalInstance.open();
+ }
 }
 
 function closeModal() {
-  authModal.classList.remove('modal-showed');
-  document.body.classList.remove('modal-open');
-  
+  if (authModalInstance) {
+    authModalInstance.close();
+  }
+
   if (authForm) authForm.reset();
 }
 if (authBtn) {
@@ -148,41 +137,24 @@ document.addEventListener('keydown', (e) => {
 });
 
 if (authForm) {
+  const authObj = new Form('auth-form');
+
   authForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    Array.from(authForm.elements).forEach(el => {
-      if (el.tagName === 'INPUT' && (el.type === 'text' || el.type === 'password')) {
-        el.value = el.value.trim();
-      }
-    });
-    if (!authForm.checkValidity()) {
-      authForm.reportValidity();
+
+    if (!authObj.validate()) {
       return;
     }
 
-// 9. В открытой модалке у нас будет форма авторизации: 
-// логин, пароль, кнопка "Войти". 
-// Используя объект с задания №6, проверяем, 
-// ввели ли мы правильные данные? Если да - то по нажатию на кнопку "Войти",
-//  модальное окно должно закрыться и пользователь должен получить сообщение
-//  об успешном входе, если нет - модальное окно не закрывается, 
-// пользователь получает сообщение об ошибке, например: 
-// "Неверный логин или пароль".
-    
-    const loginAttempt = authForm.querySelector('#form__login').value.trim();
-    const passwordAttempt = authForm.querySelector('#form__password').value.trim();
+    const values = authObj.getValues();
 
-// 10. Создаем глобальную переменную "currentUser".
-//  После успешной авторизации - присваиваем ей объект с задания №6 
-// и добавляем свойство lastLogin и присваиваем ему дату/время 
-// последнего входа, используя new Date()
-    currentUser = {...user, lastLogin: new Date()};
-
-    if (!currentUser) {
+    if (!user) {
       alert('Пользователь не найден. Сначала зарегистрируйтесь.');
       return;
     }
-    if (loginAttempt === currentUser.login && passwordAttempt === currentUser.password) {
+
+    if (values.login === user.login && values.password === user.password) {
+      currentUser = {...user, lastLogin: new Date()};
       console.log('Вход успешен: ', {currentUser});
       closeModal();
       alert('Вход успешен');

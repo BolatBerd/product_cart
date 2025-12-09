@@ -6,6 +6,8 @@ import './homework-7.js';
 import './homework-8.js';
 import './homework-9.js';
 import './homework-10.js';
+// import './drink.js';
+import { Coffee } from './coffee.js';
 
 const productCard = document.querySelector('.card');
 const productCards = document.querySelectorAll('.card');
@@ -46,3 +48,18 @@ const changeColorBtn = document.querySelector('.bg-aquamarine');
 changeColorBtn.addEventListener('click', () => {
   changeColorBtn.classList.toggle('bg-red')
 })
+
+const espresso = new Coffee({
+  name: 'Эспрессо',
+  size: 'Средний',
+  price: 150,
+  temperature: 'Горячий',
+  sugar: 'Без сахара',
+  typeMilk: 'Миндальное',
+  typeGrains: 'Arabica',
+  location: 'Ул. Пушкина, д. 154'
+});
+
+console.log(espresso.infoCofe());
+console.log(espresso.OrderDrink());
+console.log(espresso.serveDrink());

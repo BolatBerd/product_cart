@@ -55,7 +55,7 @@ if (registerForm) {
   registerForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    if (!registerObj.validate()) {
+    if (!registerObj.isValidate()) {
       return;
     }
 

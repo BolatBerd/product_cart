@@ -15,7 +15,7 @@ export class Form {
     return values;
   }
 
-  validate() {
+  isValidate() {
     if (!this.form.checkValidity()) {
       this.form.reportValidity();
       return false;

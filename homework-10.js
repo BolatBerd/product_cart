@@ -10,7 +10,7 @@ class Product {
 }
 
 class Laptop extends Product { 
-  constructor (name, price, description, processor, ram) {
+  constructor(name, price, description, processor, ram) {
     super(name, price, description);
     this.processor = processor;
     this.ram = ram; 
@@ -21,15 +21,15 @@ class Laptop extends Product {
 }
 
 class Smartphone extends Product {
-  constructor (name, price, description, screenSize, battery) {
+  constructor(name, price, description, screenSize, battery) {
     super(name, price, description);
     this.screenSize = screenSize;
     this.battery = battery; 
   }
 }
 
-const laptopMac = new Laptop ('MacBook Pro', 150000, 'Мощный ноутбук', 'M2 Pro', 16, 512);
-const smartphoneIphone = new Smartphone ('iPhone 15', 90000, 'Флагман Apple', 6.1, 3500);
+const laptopMac = new Laptop('MacBook Pro', 150000, 'Мощный ноутбук', 'M2 Pro', 16, 512);
+const smartphoneIphone = new Smartphone('iPhone 15', 90000, 'Флагман Apple', 6.1, 3500);
 const products = [laptopMac, smartphoneIphone];
 
 

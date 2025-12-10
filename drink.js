@@ -1,5 +1,6 @@
 export class Drink {
   #temperature;
+  
   constructor(name, size, price, temperature) {
     this.name = name;
     this.size = size;
@@ -8,11 +9,11 @@ export class Drink {
   }
   
   presentDrink() {
-    return ` ${this.name} размер ${this.size} напитка, температура ${this.#temperature}, и цена ${this.price}.`;
+    console.log(`${this.name} размер ${this.size} напитка, температура ${this.#temperature}, и цена ${this.price}.`);
   }
   
   #prepareDrink() {
-    return `Готовится напиток: ${this.name}`;
+    console.log(`Готовится напиток: ${this.name}`);
   }
   
   getTemperatureDrink() {
@@ -27,7 +28,12 @@ export class Drink {
     this.#setTemperatureDrink(temp);
   }
   
-  getInformationDrink() {
-    return `Напиток: ${this.name}, Размер: ${this.size}, Цена: ${this.price}, Температура: ${this.#temperature}`;
+  drinkInfo() {
+    console.log(`Напиток: ${this.name}, Размер: ${this.size}, Цена: ${this.price}, Температура: ${this.#temperature}`);
+  }
+  
+  serve() {
+    this.#prepareDrink();
+    return `${this.name} готов! Приятного аппетита!`;
   }
 }

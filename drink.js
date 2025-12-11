@@ -24,11 +24,11 @@ export class Drink {
     this.#temperature = temp;
   }
   
-  setNewTemperatureDrink(temp = 'теплый') {
+  setTemperature(temp = 'теплый') {
     this.#setTemperatureDrink(temp);
   }
   
-  drinkInfo() {
+  showDrinkInfo() {
     console.log(`Напиток: ${this.name}, Размер: ${this.size}, Цена: ${this.price}, Температура: ${this.#temperature}`);
   }
   

@@ -22,12 +22,7 @@ export class Tea extends Drink {
     console.log(`Добавление лимона: ${this.#hasLemon}`);
   }
   
-  drinkInfo() {
+  showDrinkInfo() {
     console.log(`Напиток: ${this.name}, Размер: ${this.size}, Цена: ${this.price}, Температура: ${this.#temperature}, Тип чая: ${this.#typeTea}, С лимоном: ${this.#hasLemon}`);
   }
-  
-  serve() {
-    this.#prepareDrink();
-    return `${this.name} готов! Приятного аппетита!`;
-  }  
 }

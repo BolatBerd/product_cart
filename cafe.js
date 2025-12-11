@@ -12,6 +12,7 @@ export class Cafe {
     console.log(`--- Заказ принят: ${drink.name} ---`);
     drink.presentDrink();
     const result = drink.serve();
+    console.log(result);
     return result;
   }
 } 

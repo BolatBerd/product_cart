@@ -18,12 +18,7 @@ export class Lemonade extends Drink {
     console.log(`Заваривание чая: ${this.#flavor}`);
   }
   
-  drinkInfo() {
+  showDrinkInfo() {
     console.log(`Напиток: ${this.name}, Размер: ${this.size}, Цена: ${this.price}, Температура: ${this.temperature}, Вкус: ${this.#flavor}`);
   }
-  
-  serve() {
-    this.#prepareDrink();
-    return `${this.name} готов! Приятного аппетита!`;
-  }  
 }

@@ -22,16 +22,11 @@ export class Coffee extends Drink {
     console.log(`Добавление сахара: ${this.#sugar}`);
   }
   
-  infoCofe() {
+  showDrinkInfo() {
     console.log(`Кофе: ${this.name}, Размер: ${this.size}, Цена: ${this.price}, Температура: ${this.getTemperatureDrink()}, Сахар: ${this.#sugar}, Тип молока: ${this.#typeMilk}, Тип зерен: ${this.#typeGrains}`);
   }
   
   orderDrink() {
     console.log(`Заказан кофе: ${this.name} размером ${this.size} по цене ${this.price} с температурой ${this.getTemperatureDrink()} и сахаром ${this.#sugar}.`);
-  }
-  
-  serve() {
-    this.#prepareDrink()
-    return `Ваш кофе ${this.name} готов! Приятного аппетита!`;
   }
 }

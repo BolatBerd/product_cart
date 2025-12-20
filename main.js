@@ -6,6 +6,7 @@ import './homework-7.js';
 import './homework-8.js';
 import './homework-9.js';
 import './homework-10.js';
+import './homework-12.js';
 import { Coffee } from './coffee.js';
 import { Tea } from './tea.js';
 import { Lemonade } from './lemonade.js';

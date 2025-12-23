@@ -24,10 +24,12 @@ const googleURL = 'https://google.com';
 changeColorCardBtn.addEventListener('click', () => {
   productCard.style.backgroundColor = blueColorHash;
 })
+
 changeColorCardsBtn.addEventListener('click', () => {
   productCards.forEach((card) => 
   card.style.backgroundColor = greenColorHash)
 })
+
 openGoogleBtn.addEventListener('click', openGoogle)
 
 function openGoogle() {

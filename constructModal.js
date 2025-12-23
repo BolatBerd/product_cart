@@ -1,4 +1,5 @@
 export class Modal {
+  
   constructor(modalId, buttonId, shouldCloseOnOverlay = true) {
     this.modal = document.getElementById(modalId);
     this.overlay = document.getElementById('overlay');
@@ -19,7 +20,7 @@ export class Modal {
     this.#destroyClose();
   }
 
-    handleModalClose() {
+  handleModalClose() {
     this.close();
   }
 
@@ -34,6 +35,7 @@ export class Modal {
       this.overlay.addEventListener('click', this.handleModalClose);
     }
   }
+  
   #destroyClose() {
     this.closeButton.removeEventListener('click', this.handleModalClose);
     this.overlay.removeEventListener('click', this.handleModalClose);

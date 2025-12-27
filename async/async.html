@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <link rel="stylesheet" href="async.css">
+  <meta charset="UTF-8">
+  <title>Async + localStorage</title>
+</head>
+<body>
+  <div class="buttons">
+    <button id="upload-users">Загрузить пользователей</button>
+    <button id="delete-all-users">Удалить все карточки</button>
+    <button id="delete-specific-user">удалить определенную карточку</button>
+    <button id="get-all-users"> получить все карточки</button>
+    <span class="alarm" id="load-text">Данные загружаются.....</span>
+    <span class="download-finished" id="download-finished">Загрузка закончена</span>
+  </div>
+  <div id="users" class="users"></div>
+  <script type="module" src="async.js"></script>
+</body>
+</html>

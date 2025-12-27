@@ -1,12 +1,26 @@
 const text = document.getElementById('load-text');
 const downloadFinished = document.getElementById('download-finished');
 
+
 function hideElements() {
   downloadFinished.style.display = 'none';
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  try  {
+    if (localStorage.length === 0) {
+      loadUsersToLocalStorage()
+      throw new Error('Файл users.json не найден');
+    }
+  } catch (error) {
+   console.error('Ошибка:', error);
+   error.style.display = 'block';
+  }
+});
+  
 async function loadUsersToLocalStorage() {
   hideElements();
+  showedText()
   try {
     const response = await fetch('./users.json');
 
@@ -14,22 +28,19 @@ async function loadUsersToLocalStorage() {
       throw new Error('Ошибка загрузки JSON');
     }
 
-    const users = await response.json();
-
-    for (const userId in users) {
-      const user = users[userId];
-
-      localStorage.setItem(
-        `user_${userId}`,
-        JSON.stringify(user)
-      );
-    }
-
-    console.log('Все пользователи сохранены по отдельным ключам');
+    const date = await response.json();
+    const users = date.users;
+    
+    users.forEach((user, index) => {
+      const userKey = `user_${index + 1}`;
+      localStorage.setItem(userKey, JSON.stringify(user));
+      console.log(`Пользователь ${userKey} сохранён в localStorage`);
+    });
   } catch (error) {
-    console.error(error);
-  }
+    console.error('Ошибка:', error);
+  } 
 }
+
 function deleteAllUsersToLocalStorage(){
   hideElements();
   localStorage.clear();
@@ -96,7 +107,6 @@ async function showedText() {
   , 2000);
 }
 
-document.getElementById('upload-users').addEventListener('click', loadUsersToLocalStorage);
 document.getElementById('delete-all-users').addEventListener('click', deleteAllUsersToLocalStorage);
 document.getElementById('delete-specific-user').addEventListener('click', deleteUser);
 document.getElementById('get-all-users').addEventListener('click', showedUsersToLocalStorage)

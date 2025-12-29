@@ -1,4 +1,4 @@
-.buttons{
+.buttons {
   display: flex; 
   gap: 10px;
   margin-bottom: 10px; 
@@ -7,7 +7,7 @@
   padding: 10px;
 }
 
-.alarm{
+.alarm {
   position: absolute;
   display: none;
   color: rgb(65, 120, 134);
@@ -20,7 +20,7 @@
   padding: 20px;
 }
 
-.download-finished{
+.download-finished {
   display: none;
   position: absolute;
   top: 50%;
@@ -60,7 +60,7 @@
   font-size: 14px;
 }
 
-.error{
+.error {
   display: none;
   position: absolute;
   top: 50%;
@@ -71,4 +71,17 @@
   border: 2px solid red;
   padding: 20px;
   border-radius: 10px;
+}
+
+.empty-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 30px;
+  color: #af3737;
+  margin-top: 40px;
+  border: 2px solid red;
+  padding: 20px;
 }

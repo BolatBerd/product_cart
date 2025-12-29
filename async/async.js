@@ -1,113 +1,126 @@
 const text = document.getElementById('load-text');
-const downloadFinished = document.getElementById('download-finished');
+const errorText = document.getElementById('error');
+const container = document.getElementById('users');
 
+function showLoadingText() {
+  text.style.display = 'block';
+}
 
-function hideElements() {
-  downloadFinished.style.display = 'none';
+function hideMessages() {
+  text.style.display = 'none';
+  errorText.style.display = 'none';
+}
+
+function showError(error) {
+  console.error(error);
+  text.style.display = 'none';
+  errorText.style.display = 'block';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  try  {
-    if (localStorage.length === 0) {
-      loadUsersToLocalStorage()
-      throw new Error('Файл users.json не найден');
+  showLoadingText();
+
+  setTimeout(() => {
+    const users = localStorage.getItem('users');
+
+    if (!users) {
+      loadUsersToLocalStorage().then(() => showedUsersToLocalStorage()).catch(showError);
+    } else {
+      showedUsersToLocalStorage();
     }
-  } catch (error) {
-   console.error('Ошибка:', error);
-   error.style.display = 'block';
-  }
+  }, 2000);
 });
-  
+
 async function loadUsersToLocalStorage() {
-  hideElements();
-  showedText()
-  try {
-    const response = await fetch('./users.json');
+  showLoadingText();
 
-    if (!response.ok) {
-      throw new Error('Ошибка загрузки JSON');
-    }
+  await new Promise(resolve => setTimeout(resolve, 2000));
 
-    const date = await response.json();
-    const users = date.users;
-    
-    users.forEach((user, index) => {
-      const userKey = `user_${index + 1}`;
-      localStorage.setItem(userKey, JSON.stringify(user));
-      console.log(`Пользователь ${userKey} сохранён в localStorage`);
-    });
-  } catch (error) {
-    console.error('Ошибка:', error);
-  } 
+  const response = await fetch('./users.json');
+  if (!response.ok) {
+    throw new Error('Ошибка загрузки данных');
+  }
+
+  const data = await response.json();
+
+  localStorage.setItem('users', JSON.stringify(data));
 }
 
-function deleteAllUsersToLocalStorage(){
-  hideElements();
-  localStorage.clear();
+function deleteAllUsersToLocalStorage() {
+  localStorage.removeItem('users');
+  container.innerHTML = '';
 }
 
-function askUserCount() {
-  hideElements();
-  const userInput = prompt("Какой пользователь нужен?");
+function deleteSpecificUser() {
+  const userInput = prompt("Какой пользователь нужен? Введите ID (1-3)");
   const numberUserInput = Number(userInput);
 
-  if (isNaN(numberUserInput) || numberUserInput < 1 || numberUserInput > 3) {
-    alert("Введите число от 1 до 3");
-    return null;
+  if (isNaN(numberUserInput) ) {
+    alert("Введите число");
+    return;
   }
-  
-  return numberUserInput;
+
+  let users = JSON.parse(localStorage.getItem('users'));
+
+  if (!users || users.length === 0) {
+    alert("Нет пользователей для удаления");
+    return;
+  }
+
+  users = users.filter(user => user.id !== numberUserInput);
+
+  localStorage.setItem('users', JSON.stringify(users));
+  showedUsersToLocalStorage();
 }
 
-function deleteUser() {
-  hideElements();
-  const id = askUserCount();
-  if (!id) return;
-  console.log(`user_${id} удалён`);
-  localStorage.removeItem(`user_${id}`);
+function deleteUser(id) {
+  let users = JSON.parse(localStorage.getItem('users'));
+
+  if (!users) return;
+
+  users = users.filter(user => user.id !== id);
+
+  localStorage.setItem('users', JSON.stringify(users));
+  showedUsersToLocalStorage();
 }
 
-async function showedUsersToLocalStorage() {
-  hideElements();
-  
-  const container = document.getElementById('users'); 
+function showedUsersToLocalStorage() {
+  hideMessages();
   container.innerHTML = '';
-  
-  for (let i = 1; i <= 3; i++) {
-    const userData = localStorage.getItem(`user_${i}`);
 
-    if (userData) {
-      const user = JSON.parse(userData);
-      setTimeout (() => {const card = createUserCard(user);
-      container.appendChild(card);}, 2000 );
-    }
+  const users = JSON.parse(localStorage.getItem('users'));
+
+  if (!users || users.length === 0) {
+    container.innerHTML = '<p class="empty-text">Нет пользователей</p>';
+    return;
   }
+
+  users.forEach(user => {
+    container.appendChild(createUserCard(user));
+  });
 }
 
 function createUserCard(user) {
-  
   const card = document.createElement('div');
   card.classList.add('user-card');
 
   card.innerHTML = `
     <h3>${user.name} ${user.surname}</h3>
-    <p><strong>Email:</strong> ${user.email}</p>
-    <p><strong>Возраст:</strong> ${user.age}</p>
+    <p>Email: ${user.email}</p>
+    <p>Возраст: ${user.age}</p>
+    <p>Город: ${user.city}<p>
   `;
 
   return card;
 }
 
-async function showedText() {
-  text.style.display = 'block';
-  setTimeout(() => {
-    text.style.display = 'none';
-    downloadFinished.style.display = 'block';
-  }
-  , 2000);
-}
-
 document.getElementById('delete-all-users').addEventListener('click', deleteAllUsersToLocalStorage);
-document.getElementById('delete-specific-user').addEventListener('click', deleteUser);
-document.getElementById('get-all-users').addEventListener('click', showedUsersToLocalStorage)
-document.getElementById('get-all-users').addEventListener('click', showedText);
+document.getElementById('delete-specific-user').addEventListener('click', deleteSpecificUser);
+document.getElementById('get-all-users').addEventListener('click', () => {
+  const users = JSON.parse(localStorage.getItem('users'));
+  if (users && users.length > 0 && container.children.length > 0) {
+    alert("Все пользователи уже отображены");
+  } else {
+    showedUsersToLocalStorage();
+  }
+});

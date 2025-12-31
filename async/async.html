@@ -6,15 +6,33 @@
   <title>Async + localStorage</title>
 </head>
 <body>
+  <h1 class="users-list">Список пользователей</h1>
+  <div class="line"></div>
   <div class="buttons">
     <button id="delete-all-users">Удалить все карточки</button>
-    <button id="delete-specific-user">удалить определенную карточку</button>
-    <button id="get-all-users"> получить все карточки</button>
+    <button id="delete-specific-user">Удалить определенную карточку</button>
+    <button id="get-all-users">Получить все карточки</button>
+    <button id="add-all-users">Добавить все карточки</button>
     <span class="alarm" id="load-text">Данные загружаются.....</span>
     <span class="download-finished" id="download-finished">Загрузка закончена</span>
     <span class="error" id="error">Ошибка при загрузке данных</span>
   </div>
-  <div id="users" class="users"></div>
+  <template id="user-card-template" placeholder="Введите ID пользователя для удаления">
+    <div class="user-card" id="user-card">
+        <h3 class="user-name-card"></h3>
+        <div class="line"></div>
+        <h3 class="name"></h3>
+        <h3 class="surname"></h3>
+        <p class="email"></p>
+        <p class="age"></p>
+        <p class="city"></p>
+        <div class="line"></div>
+        <button class="delete-btn" id="delete-btn">Удалить</button>
+        <button class="edit-btn" id="edit-btn">Редактировать</button>
+    </div>
+  </template>
+  <div id="users" class="users">
+  </div>
   <script type="module" src="async.js"></script>
 </body>
 </html>

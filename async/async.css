@@ -1,0 +1,102 @@
+.buttons {
+  display: flex; 
+  gap: 10px;
+  margin-bottom: 10px; 
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.alarm {
+  position: absolute;
+  display: none;
+  color: rgb(65, 120, 134);
+  font-size: 44px;
+  margin-top: 5px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgb(65, 120, 134);
+  padding: 20px;
+}
+
+.download-finished {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: green;
+  border: 2px solid green;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.users {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 500px;
+  justify-content: center;
+}
+
+.user-card {
+  width: 260px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #1f1f1f;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  font-family: Arial, sans-serif;
+}
+
+.user-card h3 {
+  margin: 0 0 8px;
+}
+
+.user-card p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.error {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: red;
+  border: 2px solid red;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.empty-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 30px;
+  color: #af3737;
+  margin-top: 40px;
+  border: 2px solid red;
+  padding: 20px;
+}
+
+.users-list {
+  text-align: center;
+  font-size: 36px;
+  color: #333;
+  margin-top: 20px;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: #333;
+  margin: 10px auto 30px auto;
+}
+
